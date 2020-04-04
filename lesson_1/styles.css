@@ -1,0 +1,11 @@
+.border-black {
+  border: 1px solid black;
+}
+
+.text-red {
+  color: red;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
