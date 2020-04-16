@@ -20,16 +20,9 @@ function createElementForEachItem() {
 // this variable should be an object with properties: id, name, price, quantity, total
 // each variable should be added to the cart array variable using the push function
 function createCart() {
-  items.forEach(item => {
-    cart.push({
-      id: item.id,
-      name: item.name,
-      price: item.price,
-      quantity: 0,
-      total: 0
-    })
-
-  });
+  // todo: Exercise 2.1: Loop through the items array variable
+  // todo: Exercise 2.2: Create a new cart entry object for each item with the properties: id, name, price quantity and total.
+  // todo: Exercise 2.3: Add each entry to the cart array variable
 }
 
 // this function should loop through the cart variable using the forEach function
@@ -64,16 +57,15 @@ function createItemElement(item) {
   const footer = document.createElement("div");
   footer.className += "grid grid-cols-2 gap-2 w-full text-center pt-4";
 
-  const price = document.createElement("div");
-  price.className += "text-md text-gray-700 flex items-center justify-center";
-  price.innerText = "£" + item.price;
-  footer.appendChild(price);
+  // todo: Exercise 1: add the missing title element to the card footer
+  // todo: it should have the classes "text-md text-gray-700 flex items-center justify-center"
+  // todo: its innerText should be set to the price of the item (prefixed with £)
 
   const button = document.createElement("button");
   button.className += "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded";
   button.innerText = "Add to cart";
-  button.setAttribute('data-id', item.id);
-  button.addEventListener("click", addToCart);
+  // todo: Exercise 4.1.a: Use the setAttribute function to add a data-id attribute to the button element - this should be set to the item’s ID
+  // todo: Exercise 4.1.b: Add a click event listener to the button using the addEventListener function - this should trigger the addToCart function
   footer.appendChild(button);
 
   card.appendChild(footer);
@@ -92,9 +84,9 @@ function createCartElement(entry) {
   const nameCol = createTableCell(entry.name);
   const priceCol = createTableCell(entry.price);
   const quantityCol = createTableCell(entry.quantity);
-  quantityCol.id = "card-row-" + entry.id + "-quantity";
   const totalCol = createTableCell(entry.total);
-  totalCol.id = "card-row-" + entry.id + "-total";
+
+  // todo: Exercise 5.1: set the ids of the quantity and total cells
 
   row.appendChild(nameCol);
   row.appendChild(priceCol);
@@ -108,10 +100,10 @@ function createCartElement(entry) {
 
 // this function should create and return a table cell element with the correct classes and set its innerText
 function createTableCell(innerText) {
-  const col = document.createElement("td");
-  col.className += "border px-4 py-2";
-  col.innerText = innerText;
-  return col;
+  // todo: Exercise 3.1: create a table cell element
+  // todo: Exercise 3.2: add the following classes to the element: “border px-4 py-2”
+  // todo: Exercise 3.3: set the element's innerText
+  // todo: Exercise 3.4: return the element
 }
 
 
@@ -127,9 +119,10 @@ function addToCart(event) {
 // this function should find the cart entry with the matching ID
 // then it should increase the entry's quantity by 1 and recalculate its total
 function addItemToCartVariable(itemId) {
-  const cartRow = cart.find(item => item.id === itemId);
-  cartRow.quantity += 1;
-  cartRow.total = cartRow.price * cartRow.quantity;
+  // todo: Exercise 4.2.a Find the entry in the cart variable with the matching ID
+  // todo: Exercise 4.2.b Increase the entry’s quantity by 1
+  // todo: Exercise 4.2.c Recalculate the entry’s total
+  console.log(cart);
 }
 
 // this function should loop through each cart entry and find its quantity and total cells in the cart table
@@ -138,16 +131,10 @@ function addItemToCartVariable(itemId) {
 function updateCartElements() {
 
   cart.forEach(entry => {
-
-    const quantityCol = document.getElementById("card-row-" + entry.id + "-quantity");
-    quantityCol.innerText = entry.quantity;
-
-    const totalCol = document.getElementById("card-row-" + entry.id + "-total");
-    totalCol.innerText = entry.total;
-
+    // todo: Exercise 5.2.a Find the entry's quantity and total cell elements using the getElementById function
+    // todo: Exercise 5.2.b Set the innerText of the quantity element to the entry’s quantity, and of the total element to the entry’s total
   });
 
-  const cartTotalEl = document.getElementById("cart-total");
-  cartTotalEl.innerText = cart.reduce((prev, next) => prev + next.total, 0);
+  // todo: Exercise 5.2.c: Use the getElementByID function to find the cart total element, and update its innerText to the sum of all cart entry totals
 
 }
