@@ -4,7 +4,9 @@ window.addEventListener('load', () => {
   createElementForEachCartEntry();
 });
 
-
+// this function should loop through the items variable using the forEach function
+// and create a new element for each item using the createItemElement
+// and then append the new element to the items container element using the appendChild function
 function createElementForEachItem() {
   const itemsContainer = document.getElementById("items-container");
   items.forEach(item => {
@@ -13,6 +15,10 @@ function createElementForEachItem() {
   });
 }
 
+// this function should loop through the items variable using the forEach function
+// and create a new cart entry variable for each item
+// this variable should be an object with properties: id, name, price, quantity, total
+// each variable should be added to the cart array variable using the push function
 function createCart() {
   items.forEach(item => {
     cart.push({
@@ -26,18 +32,20 @@ function createCart() {
   });
 }
 
+// this function should loop through the cart variable using the forEach function
+// and create a new element for each entry using the createCartElement
+// and then append the new element to the cart table element using the appendChild function
 function createElementForEachCartEntry() {
   const cartTable = document.getElementById("cart-table-body");
-
   cart.forEach(entry => {
-
-    const element = createTableRow(entry);
+    const element = createCartElement(entry);
     cartTable.appendChild(element)
-
   })
 }
 
 
+// this function should create and return a new HTML element for an item
+// the element should be a div styled as a card containing a title, an image, a price and an Add to cart button
 function createItemElement(item) {
 
   const card = document.createElement("div");
@@ -74,7 +82,9 @@ function createItemElement(item) {
 
 }
 
-function createTableRow(entry) {
+// this function should create and return a new HTML element for a cart entry
+// the element should be a table row containing 4 cells: name, price, quantity and total
+function createCartElement(entry) {
 
   const row = document.createElement("tr");
   row.id = "cart-row-" + entry.id;
@@ -95,27 +105,36 @@ function createTableRow(entry) {
 
 }
 
-function createTableCell(innerText) {
 
+// this function should create and return a table cell element with the correct classes and set its innerText
+function createTableCell(innerText) {
   const col = document.createElement("td");
   col.className += "border px-4 py-2";
   col.innerText = innerText;
   return col;
-
 }
 
+
+// this function is called when the user clicks an add to cart button
+// it should call addItemToCartVariable with the item ID and then call updateCartElements to update the view
 function addToCart(event) {
   const itemId = event.target.dataset.id;
   addItemToCartVariable(itemId);
   updateCartElements();
 }
 
+
+// this function should find the cart entry with the matching ID
+// then it should increase the entry's quantity by 1 and recalculate its total
 function addItemToCartVariable(itemId) {
   const cartRow = cart.find(item => item.id === itemId);
   cartRow.quantity += 1;
   cartRow.total = cartRow.price * cartRow.quantity;
 }
 
+// this function should loop through each cart entry and find its quantity and total cells in the cart table
+// it should update the cells' values
+// then it should find the cart total cell and set it to the sum of all cart entry totals
 function updateCartElements() {
 
   cart.forEach(entry => {
