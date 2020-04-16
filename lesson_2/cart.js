@@ -1,18 +1,20 @@
 window.addEventListener('load', () => {
-  loadItems();
+  createElementForEachItem();
+  createCart();
+  createElementForEachCartEntry();
 });
 
-const cart = [];  // empty cart on first load
 
-function loadItems() {
-
+function createElementForEachItem() {
   const itemsContainer = document.getElementById("items-container");
-
   items.forEach(item => {
-
-    const element = createCard(item);
+    const element = createItemElement(item);
     itemsContainer.appendChild(element);
+  });
+}
 
+function createCart() {
+  items.forEach(item => {
     cart.push({
       id: item.id,
       name: item.name,
@@ -22,7 +24,9 @@ function loadItems() {
     })
 
   });
+}
 
+function createElementForEachCartEntry() {
   const cartTable = document.getElementById("cart-table-body");
 
   cart.forEach(entry => {
@@ -31,10 +35,10 @@ function loadItems() {
     cartTable.appendChild(element)
 
   })
-
 }
 
-function createCard(item) {
+
+function createItemElement(item) {
 
   const card = document.createElement("div");
   card.className += "shadow p-4 flex flex-col items-center bg-white";
@@ -75,11 +79,11 @@ function createTableRow(entry) {
   const row = document.createElement("tr");
   row.id = "cart-row-" + entry.id;
 
-  const nameCol = createTableColumn(entry.name);
-  const priceCol = createTableColumn(entry.price);
-  const quantityCol = createTableColumn(entry.quantity);
+  const nameCol = createTableCell(entry.name);
+  const priceCol = createTableCell(entry.price);
+  const quantityCol = createTableCell(entry.quantity);
   quantityCol.id = "card-row-" + entry.id + "-quantity";
-  const totalCol = createTableColumn(entry.total);
+  const totalCol = createTableCell(entry.total);
   totalCol.id = "card-row-" + entry.id + "-total";
 
   row.appendChild(nameCol);
@@ -91,7 +95,7 @@ function createTableRow(entry) {
 
 }
 
-function createTableColumn(innerText) {
+function createTableCell(innerText) {
 
   const col = document.createElement("td");
   col.className += "border px-4 py-2";
@@ -101,17 +105,18 @@ function createTableColumn(innerText) {
 }
 
 function addToCart(event) {
-
   const itemId = event.target.dataset.id;
+  addItemToCartVariable(itemId);
+  updateCartElements();
+}
+
+function addItemToCartVariable(itemId) {
   const cartRow = cart.find(item => item.id === itemId);
   cartRow.quantity += 1;
   cartRow.total = cartRow.price * cartRow.quantity;
-
-  updateCart();
-
 }
 
-function updateCart() {
+function updateCartElements() {
 
   cart.forEach(entry => {
 

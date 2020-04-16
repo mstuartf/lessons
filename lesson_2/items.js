@@ -18,3 +18,5 @@ const items = [
     price: 200
   }
 ];
+
+const cart = [];  // empty cart on first load
