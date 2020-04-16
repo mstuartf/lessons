@@ -8,7 +8,7 @@ const items = [
   {
     id: "2",
     name: "Snazzy Shoes",
-    img: "https://lh3.googleusercontent.com/proxy/XWajd-Ewjzd5PaW21LMEbHhjctsP3El9x_jtnuaUscwhw9tWjGRRKRDXIa8BQ9s8gld68khH0fOampEIsixsij5__6hrsaJffRA",
+    img: "https://www.afarleycountryattire.co.uk/wp-content/uploads/2018/11/BARKER-Valiant-Shoes-%E2%80%93-Mens-Brogues-%E2%80%93-Multicoloured-Hand-Painted.jpg",
     price: 55
   },
   {
