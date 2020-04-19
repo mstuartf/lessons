@@ -20,9 +20,16 @@ function createElementForEachItem() {
 // this variable should be an object with properties: id, name, price, quantity, total
 // each variable should be added to the cart array variable using the push function
 function createCart() {
-  // todo: Exercise 2.1: Loop through the items array variable
-  // todo: Exercise 2.2: Create a new cart entry object for each item with the properties: id, name, price quantity and total.
-  // todo: Exercise 2.3: Add each entry to the cart array variable
+  items.forEach(item => {
+    const entry = {
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      quantity: 0,
+      total: 0
+    };
+    cart.push(entry);
+  })
 }
 
 // this function should loop through the cart variable using the forEach function
@@ -99,11 +106,11 @@ function createCartElement(entry) {
 
 
 // this function should create and return a table cell element with the correct classes and set its innerText
-function createTableCell(innerText) {
-  // todo: Exercise 3.1: create a table cell element
-  // todo: Exercise 3.2: add the following classes to the element: “border px-4 py-2”
-  // todo: Exercise 3.3: set the element's innerText
-  // todo: Exercise 3.4: return the element
+function createTableCell(thisIsTheTextIWantTheElementToContain) {
+  const cell = document.createElement("td");
+  cell.className += "border px-4 py-2";
+  cell.innerText = thisIsTheTextIWantTheElementToContain;
+  return cell;
 }
 
 
